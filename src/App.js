@@ -3,9 +3,11 @@ import './App.css';
 import Footer from './footer'
 import Message from './message'
 import logo from './Logo.png'
+import {initialize, useDatu} from 'datu'
 
 function App() {
-  const [messages, setMessages] = useState([])
+  const {messages, send} = useDatu()
+  console.log(messages)
   
   return (
     <main className ="main">
@@ -14,11 +16,15 @@ function App() {
         <span>ChatApp</span>
       </header>
 
-      {messages.map((m, i) => <Message key={i} text={m} /> )}
+      <div className="messages">
+        {messages.map((m, i) => {
+          return <Message key={i} text={m.text} />
+        })}
+      </div>
 
       <Footer
         // functions have the =>, right here I'm passing a function as a function
-        onSend={(text) => setMessages([...messages, text])}
+        onSend={(text) => send({text:text})}
       />
       
     </main>
@@ -27,6 +33,17 @@ function App() {
 
 export default App;
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDWXVgUqm3xATyzqUqTxcpvsW7U804ctXI",
+  authDomain: "chatter20202020.firebaseapp.com",
+  databaseURL: "https://chatter20202020.firebaseio.com",
+  projectId: "chatter20202020",
+  storageBucket: "chatter20202020.appspot.com",
+  messagingSenderId: "630230183323",
+  appId: "1:630230183323:web:cc967f51fc79e394ca053e"
+};
+
+initialize(firebaseConfig)
 
 // map is basically a function which takes a function. It always needs to return a message.
 
@@ -34,3 +51,5 @@ export default App;
 // --> called a spread operator
 
 // basically everything in web dev is a list --> map over those lists to return React componentes --> VERY common scenario
+
+// {} indicates an object

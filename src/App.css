@@ -38,8 +38,14 @@ body{
   max-height: 85px;
 }
 
+.footer {
+  position: relative;
+}
+
 .messages{
   display: flex;
+  flex: 1;
+  overflow-y: scroll;
   overflow:auto;
   height:calc(100% - 125px);
   padding-top:10px;
