@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+html, #root{
+  height:100%;
+  width:100%;
+  display:flex;
+}
+
 body{
   font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,sans-serif;
   height:100%;
@@ -50,25 +56,53 @@ header {
   position:relative;
 }
 
-.messages{
-  display: flex;
+.text-input{
+  flex: 1;
+  border-radius:12px;
+  border: 2px solid white;
+  background: black;
+  margin: 3px 4px;
+  outline: none;
+  color: white;
+  font-size: 12px;
+  height:24px;
+  padding-left: 8px;
+  /*position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+  align-items: center;*/
+}
+
+.message{
+  width:100%;
+  /*display: flex;
   flex: 1;
   overflow-y: scroll;
   overflow:auto;
   height:calc(100% - 125px);
   padding-top:10px;
+  flex-direction: column-reverse;*/
+}
+
+.message-bubble {
+  color:white;
+  background: black;
+  border-radius:6px;
+  border:1px solid grey;
+  padding:4px 10px;
+  display: inline-block;
+  margin:5px;
+}
+
+.messages {
+  overflow-y:scroll;
+  flex:1;
+  display: flex;
   flex-direction: column-reverse;
 }
 
-.text-input{
-  position:fixed;
-  bottom:0;
-  height:40px;
-  width:100%;
-  border-top:2px solid white;
-  display:flex;
-  align-items: center;
-}
+
 /* comment */
 .text-input > input {
   width:calc(100% - 50px);
@@ -86,6 +120,7 @@ header {
   outline:none;
 }
 .text-input > button {
+  flex: 1;
   position:absolute;
   top:6px;
   right:7px;
@@ -106,21 +141,4 @@ header {
   color:white;
   background:grey;
   cursor:default;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.App {
-  text-align: center;
 }

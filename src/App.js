@@ -18,8 +18,7 @@ function App() {
 
 function Room(props) {
   const room = props.match.params.room
-  const {messages, send} = useDatu()
-  console.log(props.match.params)
+  const {messages, send} = useDatu(room)
   
   return (
     <main className ="main">
