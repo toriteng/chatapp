@@ -1,13 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Footer from './footer'
 import Message from './message'
 import logo from './Logo.png'
 import {initialize, useDatu} from 'datu'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
 function App() {
+  useEffect(()=>{
+    const path = window.location.pathname
+    if(path.length<2) window.location.pathname='/home'
+  }, [])
+  return <BrowserRouter>
+    <Route path="/:room" component={Room} />
+  </BrowserRouter>
+}
+
+function Room(props) {
+  const room = props.match.params.room
   const {messages, send} = useDatu()
-  console.log(messages)
+  console.log(props.match.params)
   
   return (
     <main className ="main">
@@ -24,7 +36,7 @@ function App() {
 
       <Footer
         // functions have the =>, right here I'm passing a function as a function
-        onSend={(text) => send({text:text})}
+        onSend={(text) => send({text, room})}
       />
       
     </main>
@@ -34,13 +46,14 @@ function App() {
 export default App;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDWXVgUqm3xATyzqUqTxcpvsW7U804ctXI",
-  authDomain: "chatter20202020.firebaseapp.com",
-  databaseURL: "https://chatter20202020.firebaseio.com",
-  projectId: "chatter20202020",
-  storageBucket: "chatter20202020.appspot.com",
-  messagingSenderId: "630230183323",
-  appId: "1:630230183323:web:cc967f51fc79e394ca053e"
+  apiKey: "AIzaSyCWETEXkXePjeBMHNE_9wmp-gqXdqz_jTI",
+  authDomain: "chatapp-9525c.firebaseapp.com",
+  databaseURL: "https://chatapp-9525c.firebaseio.com",
+  projectId: "chatapp-9525c",
+  storageBucket: "chatapp-9525c.appspot.com",
+  messagingSenderId: "758476115056",
+  appId: "1:758476115056:web:fd1fcc359bc89ae562b8b5",
+  measurementId: "G-ZMCQ7QX3WN"
 };
 
 initialize(firebaseConfig)
