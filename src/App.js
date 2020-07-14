@@ -4,7 +4,8 @@ import Footer from './footer'
 import Message from './message'
 import logo from './Logo.png'
 import {initialize, useDatu} from 'datu'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
+import NamePicker from './namePicker'
 
 function App() {
   useEffect(()=>{
@@ -19,23 +20,30 @@ function App() {
 function Room(props) {
   const room = props.match.params.room
   const {messages, send} = useDatu(room)
+  const [name, setName] = useState('')
   
   return (
     <main className ="main">
+
       <header>
-        <img src={logo} className ="logo" alt="logo"/>
-        <span>ChatApp</span>
+        <div style={{display:'flex', alignItems:'center'}}>
+          <img src={logo} className ="logo" alt="logo"/>
+          <span>ChatApp</span>
+        </div>
+        <NamePicker saveName={setName} />
       </header>
 
       <div className="messages">
         {messages.map((m, i) => {
-          return <Message key={i} text={m.text} />
+          return <Message key={i} text={m.text}
+            name={m.name} isMe = {m.name===name}
+          />
         })}
       </div>
 
       <Footer
         // functions have the =>, right here I'm passing a function as a function
-        onSend={(text) => send({text, room})}
+        onSend={text => send({text, room, name})}
       />
       
     </main>

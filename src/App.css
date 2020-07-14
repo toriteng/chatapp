@@ -34,8 +34,8 @@ header {
   align-items: center;
   background: rgba(255,255,255,0.25);
   border-bottom: 2px solid white;
-  /*justify-content: space-between;
-  flex-direction: row;
+  justify-content: space-between;
+  /*flex-direction: row;
   font-size: 3rem;
   font-family: helvetica;
   color: white;
@@ -76,13 +76,18 @@ header {
 
 .message{
   width:100%;
-  /*display: flex;
-  flex: 1;
+  display: flex;
+  /*flex: 1;
   overflow-y: scroll;
   overflow:auto;
   height:calc(100% - 125px);
   padding-top:10px;
   flex-direction: column-reverse;*/
+}
+
+.message-name {
+  font-size: 10px;
+  margin-left: 6px;
 }
 
 .message-bubble {
@@ -141,4 +146,23 @@ header {
   color:white;
   background:grey;
   cursor:default;
+}
+
+.name-picker{
+  margin-right:15px;
+  display:flex;
+  align-items: right;
+}
+.name-picker svg{
+  margin-left:6px;
+  cursor: pointer;
+}
+.name-picker svg:hover{
+  transform:scale(1.2);
+}
+.name-picker input {
+  border-radius:10px;
+  outline:none;
+  border:1px solid white;
+  padding-left:7px;
 }
